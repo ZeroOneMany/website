@@ -318,6 +318,7 @@ def page(c, is_en, suffix):
 <meta property="og:locale" content="{'en_GB' if is_en else 'fr_FR'}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#111111">
+<link rel="icon" href="{pre}favicon.ico" sizes="32x32">
 <link rel="icon" type="image/svg+xml" href="{pre}assets/mark.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="{pre}assets/favicon-32.png">
 <link rel="apple-touch-icon" href="{pre}assets/apple-touch-icon.png">
@@ -461,6 +462,7 @@ def build(out, suffix):
         shutil.rmtree(out)
     os.makedirs(os.path.join(out, "en"))
     shutil.copytree(os.path.join(HERE, "assets"), os.path.join(out, "assets"))
+    shutil.copy(os.path.join(HERE, "assets", "favicon.ico"), os.path.join(out, "favicon.ico"))  # browsers ask /favicon.ico first
     w = lambda p, s: open(os.path.join(out, p), "w", encoding="utf-8").write(s)
     w("index.html", page(FR, False, suffix))
     w("en/index.html", page(EN, True, suffix))
